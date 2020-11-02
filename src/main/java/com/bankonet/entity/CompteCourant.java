@@ -47,4 +47,36 @@ public class CompteCourant {
     public String getId() {
         return id;
     }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    public String getIntitule() {
+        return intitule;
+    }
+
+    public void setIntitule(String intitule) {
+        this.intitule = intitule;
+    }
+
+    public double getSolde() {
+        return solde;
+    }
+
+    public void setSolde(double solde) {
+        this.solde = solde;
+    }
+
+    public double getMontantDecouvertAutorise() {
+        return montantDecouvertAutorise;
+    }
+
+    public void setMontantDecouvertAutorise(double montantDecouvertAutorise) {
+        this.montantDecouvertAutorise = montantDecouvertAutorise;
+    }
 }
