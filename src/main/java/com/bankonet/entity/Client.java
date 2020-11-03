@@ -1,29 +1,26 @@
 package com.bankonet.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity // This tells Hibernate to make a table out of this class
 public class Client {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private String identifiant;
+    private Integer id;
     private String nom;
     private String prenom;
 
-//    CompteCourant compteCourant;
-//    CompteEpargne compteEpargne;
+    @OneToOne(mappedBy = "client", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    CompteCourant compteCourant;
 
-    public Client(String identifiant, String nom, String prenom //CompteCourant compteCourant, CompteEpargne compteEpargne
+    public Client(Integer id, String nom, String prenom, CompteCourant compteCourant
                   ) {
 
-        this.identifiant = identifiant;
+        this.id = id;
         this.nom = nom;
         this.prenom = prenom;
-//        this.compteCourant = compteCourant;
-//        this.compteEpargne = compteEpargne;
+        this.compteCourant = compteCourant;
     }
 
     public Client() {
@@ -33,11 +30,10 @@ public class Client {
     @Override
     public String toString() {
         return "Client{" +
-                "identifiant='" + identifiant + '\'' +
+                "identifiant='" + id + '\'' +
                 ", nom='" + nom + '\'' +
                 ", prénom='" + prenom + '\'' +
-//                ", compteCourant=" + compteCourant
-//                ", compteEpargne=" + compteEpargne +
+                ", compteCourant=" + compteCourant +
                 '}';
     }
 
@@ -46,8 +42,8 @@ public class Client {
 //    }
 
 
-    public String getIdentifiant() {
-        return identifiant;
+    public Integer getId() {
+        return id;
     }
 
     public String getNom() {
@@ -64,5 +60,13 @@ public class Client {
 
     public void setPrenom(String prenom) {
         this.prenom = prenom;
+    }
+
+    public CompteCourant getCompteCourant() {
+        return compteCourant;
+    }
+
+    public void setCompteCourant(CompteCourant compteCourant) {
+        this.compteCourant = compteCourant;
     }
 }

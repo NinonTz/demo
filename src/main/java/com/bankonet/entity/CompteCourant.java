@@ -1,6 +1,7 @@
 package com.bankonet.entity;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 
 @Entity // This tells Hibernate to make a table out of this class
 public class CompteCourant {
@@ -10,12 +11,17 @@ public class CompteCourant {
     double montantDecouvertAutorise;
     private String id;
 
-    public CompteCourant(String numero, String intitule, double solde, double montantDecouvertAutorise) {
+    public CompteCourant(String numero, String intitule, double solde, double montantDecouvertAutorise, Client client) {
         this.numero = numero;
         this.intitule = intitule;
         this.solde = solde;
         this.montantDecouvertAutorise = montantDecouvertAutorise;
+        this.client = client;
     }
+
+    @OneToOne()
+    @JsonIgnore
+    private Client client;
 
     public CompteCourant() {
 
